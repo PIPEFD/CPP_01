@@ -6,7 +6,7 @@
 /*   By: pipe <pipe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:21:39 by pipe              #+#    #+#             */
-/*   Updated: 2024/12/04 13:03:06 by pipe             ###   ########.fr       */
+/*   Updated: 2024/12/04 13:36:28 by pipe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ class Harl
         void warning();
         void error();
         
+
+        int getLevelIndex(const std::string &leve)const;
+        std::string toLower(const std::string &str) const;
         struct Complaint
         {
             std::string level;
@@ -32,7 +35,7 @@ class Harl
         
     
     public:
-        void complain(const std::string &level);
+        void complainFilter(const std::string &level);
     
 };
 

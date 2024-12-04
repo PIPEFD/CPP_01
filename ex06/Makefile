@@ -1,4 +1,4 @@
-NAME		=   Harl
+NAME		=   harl_filter
 
 SRC_DIR		=	src/
 SRC_FILES	=	main.cpp \
@@ -27,7 +27,7 @@ all:		$(NAME)
 
 $(NAME): $(OBJS_FILES)
 	@$(CC) -o $(NAME) $(FLAGS) $(OBJS_FILES)
-	@echo "$(GREEN)HARL COMPILED SUCCESSFULLY!$(CLEAR)"
+	@echo "$(GREEN)HARL FILTER COMPILED SUCCESSFULLY!$(CLEAR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 	@mkdir -p $(OBJ_DIR)

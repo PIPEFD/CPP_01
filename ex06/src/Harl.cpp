@@ -6,7 +6,7 @@
 /*   By: pipe <pipe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:17:46 by pipe              #+#    #+#             */
-/*   Updated: 2024/12/04 13:10:51 by pipe             ###   ########.fr       */
+/*   Updated: 2024/12/04 13:43:07 by pipe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,16 @@ void Harl::error()
 
 }
 
-void Harl::complain(const std::string &level)
+std::string  Harl::toLower(const std::string &str) const 
+{
+    std::string lowerstr;
+    
+    for (size_t i = 0; i < str.length(); i++)
+        lowerstr += std::tolower(static_cast<unsigned char>(str[i]));
+    return (lowerstr);
+}
+
+int Harl::getLevelIndex(const std::string &level) const
 {
     Complaint complaints[] = 
     {
@@ -47,14 +56,33 @@ void Harl::complain(const std::string &level)
         {"ERROR", &Harl::error},
     };
 
+    std::string levellower = toLower(level);
+
     for (size_t i = 0;  i < 4; i++)
     {
-        if (complaints[i].level == level)
-        {
-            (this->*(complaints[i].method))();
-            return;
-        }
+        if (toLower(complaints[i].level) == levellower)
+            return (i);
     }
+    return (-1);
+}
 
-    std::cerr << "[UNKNOWN] The level \"" << level << "\" is not recognized." << std::endl;
+void Harl::complainFilter(const std::string &level)
+{
+    int index = getLevelIndex(level);
+    if (index  == -1)
+    {
+        std::cerr << "[UNKNOWN] The level \"" << level << "\" is not recognized." << std::endl;
+        return;
+    }
+    
+    Complaint complaints[] = 
+    {
+        {"DEBUG", &Harl::debug},
+        {"INFO", &Harl::info},
+        {"WARNING", &Harl::warning},
+        {"ERROR", &Harl::error},
+    };
+
+    for (size_t i = index ; i < 4; i++)
+            (this->*(complaints[i].method))();
 }
