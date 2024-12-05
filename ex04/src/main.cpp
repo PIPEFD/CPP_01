@@ -37,7 +37,8 @@ std::string replaceConcurrence(const std::string &text, const std::string &str1,
 int main (int argc, char **argv)
 {
     if (argc != 4)
-    {    std::cerr << "Uso: " << argv[0] << " Archvivo_entrada < cadena a remplazar > <cadena de remplazo" << std::endl;
+    {    
+        std::cerr << "usage:" << argv[0] << " file name string1 string2" << std::endl;
         return(-1);
     }
 
@@ -47,19 +48,19 @@ int main (int argc, char **argv)
 
     if (str1.empty() || str2.empty())
     {
-        std::cerr << "Error: La cadena a remplazar (str1) no puede estar vacia" << std::endl;
+        std::cerr << "Error: string1 is empty or string2 is empty" << std::endl;
         return (-1);
     }
     std::ifstream infile((filename.c_str()));
     if (!infile)
     {
-        std::cerr << "Error: No se pudo abrir el archivo de entrada" << std::endl;
+        std::cerr << "Error: cannot open file " << filename << std::endl;
         return (-1);
     }
     std::ofstream outfile((filename + ".replace").c_str());
     if (!outfile)
     {
-        std::cerr << "Error no se puede crear el archivo de salida" << std::endl;
+        std::cerr << "Error: cannot create output file" << filename << ".replace" << std::endl;
         return(-1);
     }
     std::string line;
@@ -70,7 +71,7 @@ int main (int argc, char **argv)
     infile.close();
     outfile.close();
 
-    std::cout << "Archivo procesado exitosamente. Salida:" << filename << ".replace" << std::endl;
+    std::cout << "File processed successfully. Output:" << filename << ".replace" << std::endl;
 
     return (0);
 }

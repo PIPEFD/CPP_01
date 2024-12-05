@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pipe <pipe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dbonilla <dbonilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 20:35:54 by pipe              #+#    #+#             */
-/*   Updated: 2024/12/01 22:47:16 by pipe             ###   ########.fr       */
+/*   Updated: 2024/12/05 13:26:02 by dbonilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <string.h>
 #include <iostream>
 #include <sstream>
+#include <cstdlib>
+
 
 class Zombie
 {

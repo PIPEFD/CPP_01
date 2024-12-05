@@ -6,7 +6,7 @@
 /*   By: dbonilla <dbonilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:38:21 by dbonilla          #+#    #+#             */
-/*   Updated: 2024/12/02 19:13:08 by dbonilla         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:15:58 by dbonilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,138 +16,172 @@
 #include "HumanB.hpp"
 
 
+ 
+    /*  
+        //-----------------------------------------------//
+        
+        Test 1: Changed the gun of HumanB 
+        This Example choose how HumanB can change 
+        the weapon during the execution.
+        //-----------------------------------------------//
+             
+        Test 2: Share weapon between HumanA and HumanB
+        This example shows how HumanA and HumanB can share 
+        the same weapon, reflecting changes in real time.
 
-// Cambiar el arma de HumanB
-// Este ejemplo demuestra cómo HumanB puede cambiar de arma durante la ejecución:
+        //---------------------------------------------//
 
-// int main() {
-//     Weapon sword("sword");
-//     Weapon bow("bow");
+        Test 3: Used multiple weapons   
+        Here we explore how multiple weapons can 
+        coexist and how changes affect each human:
 
-//     HumanB jim("Jim");
-//     jim.attack(); // Sin arma inicialmente
+        //-----------------------------------------------//
 
-//     jim.setWeapon(sword);
-//     jim.attack(); // Jim ahora usa la espada
+        Test 4: No changes in shared weapon
+        This example shows that HumanA cant 
+        change the shared weapon directly:
 
-//     jim.setWeapon(bow);
-//     jim.attack(); // Jim ahora usa el arco
+        //-----------------------------------------------//
+        
+        Test 5: Not assigned weapon for HumanB
+        This example demonstrates what happens 
+        when HumanB does not have a weapon assigned:
 
-//     return 0;
-// }
+        //-----------------------------------------------//
+        
+        Test 6: Create multiple instances of humans
+        This example creates several HumanA and HumanB 
+        instances to show how they behave with different weapons:
+        
+        //-----------------------------------------------//        
+    */
+
+int main() {
+
+    std::cout << "----------------------------------" << std::endl;
+    std::cout << "Test 1: Changed the gun of HumanB" << std::endl;
+    std::cout << "----------------------------------" << std::endl;
+
+    {
+    Weapon sword("sword");
+    Weapon bow("bow");
+
+    HumanB jim("Jim");
+    jim.attack();
+
+    jim.setWeapon(sword);
+    jim.attack();
+
+    jim.setWeapon(bow);
+    jim.attack();
+    }
+    std::cout << "----------------------------------" << std::endl;
+    std::cout << "Test 2: Share weapon between HumanA and HumanB" << std::endl;
+    std::cout << "----------------------------------" << std::endl;
 
 
-// Compartir un arma entre HumanA y HumanB
-// En este caso, mostramos cómo HumanA y HumanB pueden compartir la misma arma, reflejando los cambios en tiempo real:
-
-int main()
-{
+    {
     Weapon club("club");
 
     HumanA bob("Bob", club);
     HumanB jim("Jim");
     jim.setWeapon(club);
 
-    bob.attack(); // Bob usa el club
-    jim.attack(); // Jim también usa el club
-
-    club.setType("axe"); // Cambiar el tipo del arma
-    bob.attack(); // Ambos ven el cambio
+    bob.attack();
     jim.attack();
 
-    return 0;
+    club.setType("axe");
+    bob.attack();
+    jim.attack();
+    }
+    std::cout << "----------------------------------" << std::endl;
+    std::cout << "Test 3: Used multiple weapons" << std::endl;
+    std::cout << "----------------------------------" << std::endl;
+
+    {
+    Weapon sword("sword");
+    Weapon shield("shield");
+
+    HumanA alice("Alice", sword);
+    HumanB charlie("Charlie");
+
+    alice.attack();
+    charlie.setWeapon(shield);
+    charlie.attack();
+
+    shield.setType("magic shield");
+    charlie.attack();
+
+    sword.setType("flaming sword");
+    alice.attack();
+    }
+    
+    std::cout << "----------------------------------" << std::endl;
+    std::cout << "Test 4: No changes in shared weapon" << std::endl; 
+    std::cout << "----------------------------------" << std::endl;
+
+
+    {
+    Weapon club("club");
+    HumanA marck("Bob", club);
+    marck.attack();
+    Weapon sword("sword");
+    // marck.weapon = sword; 
+    club.setType("axe");
+    marck.attack();
+    }
+    std::cout << "----------------------------------" << std::endl;
+    std::cout << "Test 5: Not assigned weapon for HumanB" << std::endl;
+    std::cout << "----------------------------------" << std::endl;
+
+    {
+    HumanB carl("Jim");
+    carl.attack();
+
+    Weapon club("club");
+    carl.setWeapon(club);
+    carl.attack();
+    }
+    std::cout << "----------------------------------" << std::endl;
+    std::cout << "Test 6: Create multiple instances of humans" << std::endl;
+    std::cout << "----------------------------------" << std::endl;
+
+    {
+    Weapon sword("sword");
+    Weapon bow("bow");
+
+    HumanA alice("Alice", sword);
+    HumanA bob("Bob", bow);
+
+    HumanB charlie("Charlie");
+    HumanB dave("Dave");
+
+    charlie.setWeapon(sword);
+    dave.setWeapon(bow);
+
+    alice.attack();
+    bob.attack();
+    charlie.attack();
+    dave.attack();
+
+    sword.setType("enchanted sword");
+    bow.setType("crossbow");
+
+    alice.attack();
+    bob.attack();
+    charlie.attack();
+    dave.attack();
+    }
+    
+    std::cout << "----------------------------------" << std::endl;
+    std::cout << " End of tests" << std::endl;
+
+    return (0);
 }
 
-// Uso de múltiples armas
-// Aquí exploramos cómo múltiples armas pueden coexistir y cómo los cambios afectan a cada humano:
 
 
-// int main() {
-//     Weapon sword("sword");
-//     Weapon shield("shield");
 
-//     HumanA alice("Alice", sword);
-//     HumanB charlie("Charlie");
-
-//     alice.attack(); // Alice usa la espada
-//     charlie.setWeapon(shield);
-//     charlie.attack(); // Charlie usa el escudo
-
-//     shield.setType("magic shield");
-//     charlie.attack(); // Charlie ve el cambio en el escudo
-
-//     sword.setType("flaming sword");
-//     alice.attack(); // Alice ve el cambio en la espada
-
-//     return 0;
-// }
-
-// Sin cambios en el arma compartida
-// Este ejemplo muestra que HumanA no puede cambiar el arma asignada directamente:
-
-
-// int main() {
-//     Weapon club("club");
-//     HumanA bob("Bob", club);
-
-//     bob.attack();
-
-//     // Intentar asignar otra arma no es posible
-//     // Weapon sword("sword");
-//     // bob.weapon = sword; // Esto no compila porque `weapon` es una referencia constante.
-
-//     club.setType("axe"); // Solo podemos cambiar el tipo del arma existente
-//     bob.attack();
-
-//     return 0;
-// }
-
-// Sin arma para HumanB
-// Este ejemplo demuestra qué sucede cuando HumanB no tiene un arma asignada:
-
-// int main() {
-//     HumanB jim("Jim");
-//     jim.attack(); // Jim no tiene un arma
-
-//     Weapon club("club");
-//     jim.setWeapon(club);
-//     jim.attack(); // Jim ahora tiene un arma
-
-//     return 0;
-// }
-
-
-// Crear múltiples instancias de humanos
-// Este ejemplo crea varios HumanA y HumanB para mostrar cómo se comportan con diferentes armas:
-
-// int main() {
-//     Weapon sword("sword");
-//     Weapon bow("bow");
-
-//     HumanA alice("Alice", sword);
-//     HumanA bob("Bob", bow);
-
-//     HumanB charlie("Charlie");
-//     HumanB dave("Dave");
-
-//     charlie.setWeapon(sword);
-//     dave.setWeapon(bow);
-
-//     alice.attack();
-//     bob.attack();
-//     charlie.attack();
-//     dave.attack();
-
-//     sword.setType("enchanted sword");
-//     bow.setType("crossbow");
-
-//     alice.attack();
-//     bob.attack();
-//     charlie.attack();
-//     dave.attack();
-
-//     return 0;
-// }
 
 // int main()
 // {

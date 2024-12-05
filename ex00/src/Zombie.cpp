@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pipe <pipe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dbonilla <dbonilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 19:36:34 by pipe              #+#    #+#             */
-/*   Updated: 2024/12/01 20:00:12 by pipe             ###   ########.fr       */
+/*   Updated: 2024/12/05 13:25:22 by dbonilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Zombie::Zombie(std::string name) : name(name)
 {
-    std::cout << name << "HOLAA" << std::endl;
+    std::cout << name << std::endl;
 }
 Zombie::~Zombie()
 {
